@@ -20,4 +20,5 @@ jobs:
       with:
         name: ifbyol-pr-${{ github.event.number }}
         scope: global
+        file: test-folder/okteto.yaml
         timeout: 15m
