@@ -1,3 +1,5 @@
 deploy:
   - name: "echo something"
     command: echo "Hi!"
+  - name: "echo something else"
+    command: echo "This is a PR"
