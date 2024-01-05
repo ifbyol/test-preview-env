@@ -1,0 +1,19 @@
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  closed:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Context
+      uses: okteto/context@latest
+      with:
+        url: https://okteto.ifbyol.dev.okteto.net/
+        token: ${{ secrets.OKTETO_TOKEN }}
+
+    - name: Destroy preview environment
+      uses: okteto/destroy-preview@latest
+      with:
+        name: ifbyol-pr-${{ github.event.number }}

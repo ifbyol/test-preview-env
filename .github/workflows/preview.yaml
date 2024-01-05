@@ -1,0 +1,22 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  preview:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Context
+      uses: okteto/context@latest
+      with:
+        url: https://okteto.ifbyol.dev.okteto.net/
+        token: ${{ secrets.OKTETO_TOKEN }}
+
+    - name: Deploy preview environment
+      uses: okteto/deploy-preview@latest
+      env:
+       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        name: ifbyol-pr-${{ github.event.number }}
+        timeout: 15m
